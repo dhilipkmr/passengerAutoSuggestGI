@@ -1,0 +1,25 @@
+.counter{
+	margin-top: 5px; 
+}
+
+.counterBox {
+	margin-top: 1px;
+	width: 14px;
+	border: 1px solid #c2c2c2;
+	height:14px;
+	text-align: center;
+}
+
+button{
+	background-color: #dedede;
+	border:1px solid #c2c2c2; 
+}
+
+button:hover{
+	cursor: pointer;
+}
+
+button:focus, .counterBox:focus{
+	outline: none !important;
+    border-color: #719ECE;
+}
