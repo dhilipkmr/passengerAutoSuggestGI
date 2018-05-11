@@ -1,9 +1,9 @@
-Created Passenger Component in goibibo
+# Created Passenger Component in goibibo
 
-Installation:
-1.npm install from the root
-2.npm start
+## Installation:<br/>
+1.npm install from the root<br/>
+2.npm start<br/>
 
-Branch:
-1.Implementation with React => "pacReact" Branch
+## Branch:<br/>
+1.Implementation with React => "pacReact" Branch <br/>
 2.Implementation with react-redux => "pacReactWithRedux" Branch
