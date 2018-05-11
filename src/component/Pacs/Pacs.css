@@ -54,16 +54,18 @@ p {
 .travellerCounter {
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	background-color: white;
-	width: 15%;
+	width: 170px;
 	margin:auto;
 	padding:12px;
+	position: relative !important;
 
 }
 .travellerCounter p {
 	display: inline-block;
+	
 }
 .travellerCounter p:nth-child(1) {
-	color : #676767;
+	color : #404040;
 	font-weight: 200;
 }
 
@@ -71,5 +73,8 @@ p {
 	font-size: 10px;
 	color : #2d67b2;
 	padding-left: 20px;
+	position: absolute;
+	top: 15px;
+	right : 10px;
 	
 }
