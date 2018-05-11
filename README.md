@@ -1,4 +1,4 @@
-# Created Passenger Component in goibibo
+# Duplicated Passenger Component of Goibibo
 
 ## Installation:<br/>
 1.npm install from the root<br/>
