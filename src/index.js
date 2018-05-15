@@ -29,16 +29,10 @@ const initialStoreContent = {
     }
   },
   totalTravellers : 1,
-  warning : false,
-  
-  autoSearchTerms : {},
-  currentInput : "",
-  selected : false
+  warning : false
 };
 
 const store = createStore(CounterReducer, initialStoreContent, applyMiddleware(thunk));
-
-
 
 ReactDOM.render(
 	<Provider store = { store }>
