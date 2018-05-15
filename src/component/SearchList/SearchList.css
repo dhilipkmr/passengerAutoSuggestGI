@@ -1,0 +1,53 @@
+.searchListContainer {
+	width: 300px;
+    margin: auto;
+    margin-top: 1px;
+    padding : 0px !important;
+}
+
+.searchlistItem:hover {
+	background-color: #2d67b2;
+	color: white;
+	border : 1px solid white;
+	cursor: pointer;
+}
+
+.searchlistItem:hover .country, .searchlistItem:hover .airport {
+	color: white;
+}
+
+.searchlistItem {
+	background-color: white;
+	color: #242424;
+	list-style: none;
+	border-bottom: 1px solid #bdbdbd;
+	position: relative;
+	font-weight: 400;
+}
+.country {
+	position: relative;
+    text-align: right;
+    bottom: 15px;
+    right: 16px;
+    white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+
+.name, .airport{
+	text-align: left;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+.airport, .country{
+	font-size: 12px;
+	color : #bdbdbd ;
+	font-weight: 200;
+}
+.airport {
+	width: 150px;
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+
+}

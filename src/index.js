@@ -11,26 +11,28 @@ import registerServiceWorker from './registerServiceWorker';
 import CounterReducer from  "./Reducers/CounterReducer";
 
 const initialStoreContent = {
-    pacs : {
-      adults : {
-        label : "Adults",
-        info : "12+ yrs",
-        count : 1
-      },
-      children : {
-        label : "Children",
-        info : "2-12 yrs",
-        count : 0
-      },
-      infants : {
-        label : "Infants",
-        info : "below 2 yrs",
-        count : 0
-      }
+  pacs : {
+    adults : {
+      label : "Adults",
+      info : "12+ yrs",
+      count : 1
     },
-    totalTravellers : 1,
-    warning : false
-  };
+    children : {
+      label : "Children",
+      info : "2-12 yrs",
+      count : 0
+    },
+    infants : {
+      label : "Infants",
+      info : "below 2 yrs",
+      count : 0
+    }
+  },
+  totalTravellers : 1,
+  warning : false,
+  autoSearchTerms : {},
+  currentInput : ""
+};
 
 const store = createStore(CounterReducer, initialStoreContent, applyMiddleware(thunk));
 

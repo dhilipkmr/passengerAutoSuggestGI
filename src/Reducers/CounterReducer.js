@@ -6,6 +6,7 @@ const totalTravellers = (content) => {
 
 const CounterReducer = (state, action) => {
   let newContent = {...state.pacs};
+  // let searchContent = {...state.autoSearchTerms};
   let warn = false;
 
   switch (action.type) {
@@ -18,14 +19,43 @@ const CounterReducer = (state, action) => {
         warn = true;
       } 
     break;
+
+
     case ("reduce") : 
       newContent[action.payload.label.toLowerCase()].count = 
         newContent[action.payload.label.toLowerCase()].count + action.payload.value; 
       warn = !(state.totalTravellers <= 9) ;
     break;
+
+
+    case "search" :
+      if (action.payload.result.success) {
+        let matches = action.payload.result.data.r.map((v,i,a) => {   //Find the matched Airport names
+          return {
+            name : v.xtr.cn,
+            iata : v.iata,
+            airport : v.n,
+            country : v.xtr.cnt_n
+          } 
+        });   
+        let searchMapper = {                                          //Construct the Mapper based on searchTerms and update the store
+          [action.payload.searchTerm] : matches
+        }
+        Object.assign(state.autoSearchTerms, searchMapper);
+        state.currentInput = action.payload.searchTerm;
+      } 
+      console.log(state);
+      break;
+
+    case "currentSearchTerm" : 
+      state.currentInput = action.payload;
+      break;
+    case "updateSearchInput" : 
+    console.log(action.payload);
+      state.currentInput = action.payload;
+
     default : 
       return state;
-    break;
   }
 
   let newTotalTravellers = totalTravellers(newContent);
@@ -35,7 +65,8 @@ const CounterReducer = (state, action) => {
     pacs : newContent,
     totalTravellers : newTotalTravellers,
     infantWarn : newContent['adults'].count < newContent['infants'].count,
-    warning : warn
+    warning : warn,
+
   }
   return state;
 }
