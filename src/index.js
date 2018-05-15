@@ -30,8 +30,10 @@ const initialStoreContent = {
   },
   totalTravellers : 1,
   warning : false,
+  
   autoSearchTerms : {},
-  currentInput : ""
+  currentInput : "",
+  selected : false
 };
 
 const store = createStore(CounterReducer, initialStoreContent, applyMiddleware(thunk));

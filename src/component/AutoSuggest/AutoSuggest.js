@@ -7,18 +7,13 @@ import SearchList from "../SearchList/SearchList";
 import "./AutoSuggest.css";
 
 class AutoSuggest extends Component {
+
 	beginAutoSuggest = (event) => {
-		var input = document.getElementsByClassName("searchListContainer");
 		const val = event.target.value;
-		if (!val) {
-			input[0].classList.add("hide");	
+		if (val !== "" && !this.props.autoSearchTerms[val]){
+			this.props.autoSearchSuggest(val);			//rest, update autoSearchTerms, currentInput and selected
 		} else {
-			input[0].classList.remove("hide");	
-		}
-		if (!this.props.autoSearchTerms[val]){
-			this.props.autoSearchSuggest(val);
-		} else {
-			this.props.update(val);
+			this.props.update(val);						//update currentInput, selected
 		}
 	}
 
@@ -26,8 +21,14 @@ class AutoSuggest extends Component {
 
 		return (
 			<div className="searchContainer">
-				<input id="searchInput" className="search" type="text" onKeyUp={ (event) => { this.beginAutoSuggest(event)}}></input>
-				<SearchList />
+				<input
+					id = "searchInput"
+					className = "search" 
+					type = "text" 
+					value = { this.props.currentInput } 
+					onChange = { (event) => { this.beginAutoSuggest(event)}}>
+				</input>
+				{ this.props.selected ? null : <SearchList /> }
 			</div>
 		);
 	}
@@ -35,7 +36,9 @@ class AutoSuggest extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		autoSearchTerms : state.autoSearchTerms
+		autoSearchTerms : state.autoSearchTerms,
+		currentInput : state.currentInput,
+		selected : state.selected
 	}
 }
 const mapDispatchToProps = (dispatch) => {

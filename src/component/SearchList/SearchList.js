@@ -5,17 +5,14 @@ import "./SearchList.css"
 
 class searchlist extends Component {
 
-	updateSearchInput = (val) => {
-		var input = document.getElementById("searchInput");
-		input.value = val;
-		input.nextSibling.classList.add("hide");
-	}
-
 	loadChildren = () => {
 		if (this.props.autoSearchTerms[this.props.currentInput]) {
 			return this.props.autoSearchTerms[this.props.currentInput].map((term,index) => {
 				return (
-					<li key={index} className="searchlistItem" onClick={(e) => {this.updateSearchInput(e.currentTarget.children[0].textContent)}}>
+					<li 
+					key={index} 
+					className="searchlistItem" 
+					onClick={(e) => { this.props.updateSelectionAndCurent(e.currentTarget.children[0].textContent)}}>
 						<div className = "name">{ term.name +" "}
 							<span className = "iata">({term.iata}) </span>
 						</div>
@@ -29,10 +26,9 @@ class searchlist extends Component {
 		}
 	}
 
-
 	render() {
 		return (
-			<ul className="searchListContainer">
+			<ul className = "searchListContainer">
 			{this.loadChildren()}
 			</ul>
 		);
@@ -46,12 +42,12 @@ const mapStateToProps = (state) => {
 	}
 }
 
-// const mapDispatchToProps = (dispatch) => {
-// 	return {
-// 		updateSearchInput : (val) => {
-// 			dispatch({ type : "updateSearchInput", payload : val})
-// 		}
-// 	}
-// }
+const mapDispatchToProps = (dispatch) => {
+	return {
+		updateSelectionAndCurent : (val) => {
+			dispatch({ type : "updateSelectionAndCurent", payload : val })
+		}
+	}
+}
 
-export default connect(mapStateToProps)(searchlist);
+export default connect(mapStateToProps, mapDispatchToProps)(searchlist);

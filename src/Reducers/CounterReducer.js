@@ -43,17 +43,21 @@ const CounterReducer = (state, action) => {
         }
         Object.assign(state.autoSearchTerms, searchMapper);
         state.currentInput = action.payload.searchTerm;
+        state.selected = false;
       } 
       console.log(state);
       break;
 
     case "currentSearchTerm" : 
       state.currentInput = action.payload;
+      state.selected = false;
       break;
-    case "updateSearchInput" : 
-    console.log(action.payload);
+    case "updateSelectionAndCurent" : 
+      console.log(action.payload);
+      state.selected = true;
       state.currentInput = action.payload;
-
+      break;
+      
     default : 
       return state;
   }
