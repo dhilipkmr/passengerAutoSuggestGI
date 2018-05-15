@@ -1,26 +1,25 @@
 import React from "react";
 import {connect} from "react-redux";
-
-
 import Counter from "../../container/Counter/Counter";
-
 import "./Pacs.css";
 
+let PASSENGER_COUNT_WARNING = "Number of Passengers cannot exceed 9";
+let INFANTS_COUNT_WARNING = "Number of infants cannot be more than adults";
+
+const warning = (val) => {
+	return <p className = "warning">{ val }</p>
+} 
 
 const pacs = (props) => {
+	const pacsContainerRef = React.createRef();
 	const pacsInfoArray = Object.keys(props.pacsInfo);
 
 	this.togglePacsContainer = () => {
-		let pacsContainer = document.getElementById("pacsContainer")
-		pacsContainer.classList.contains("hide") ? pacsContainer.classList.remove("hide"): pacsContainer.classList.add("hide");
-	}
-
-	this.warningHandler = (warn) => {
-		return warn ? "warning" : "hide warning";
+		pacsContainerRef.current.classList.toggle("hide");
 	}
 
 	this.hide = () => {
-		document.getElementById("pacsContainer").classList.add("hide");
+		pacsContainerRef.current.classList.toggle("hide");
 	}
 
 	let passengerTypeGenerator = pacsInfoArray.map((entry, index) => (
@@ -36,11 +35,11 @@ const pacs = (props) => {
 				<p>{ props.totalTravellers + " Traveller(s)" }</p>
 				<p onClick = { this.togglePacsContainer }>Edit</p>
 			</div>
-			<div className = "pacsContainer hide" id = "pacsContainer">
-				<p className = { this.warningHandler(props.warning) }>ERROR: Maximum of 9 travellers allowed</p>
-				<p className = { this.warningHandler(props.infantWarn) }>ERROR: Number of infants cannot be more than adults</p>
+			<div className = "pacsContainer hide" ref = { pacsContainerRef }>
+				{ props.warning ? warning(PASSENGER_COUNT_WARNING) : null }
+				{ props.infantWarn ? warning(INFANTS_COUNT_WARNING) : null }
 				{ passengerTypeGenerator }
-				<div id = "closeBtn" className = "close" onClick = { this.hide }>X</div>
+				<div className = "close" onClick = { this.hide }>X</div>
 			</div>
 		</div>
 	);
